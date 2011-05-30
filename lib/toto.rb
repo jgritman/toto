@@ -47,6 +47,12 @@ module Toto
       end
     end
 
+    def articles
+      Site.articles(@config[:ext]).reverse.map do |a|
+        Article.new(a, @config)
+      end
+    end
+
     def method_missing m, *args, &blk
       self.keys.include?(m) ? self[m] : super
     end
